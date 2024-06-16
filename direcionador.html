@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu de Navegação</title>
+    <link rel="stylesheet" href="styles.css" href="navbar.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a class="brand-title" href="direcionador.html">Meus Investimentos</a>
+            <button class="toggle-button" id="navbar-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <div class="navbar-links" id="navbar-links">
+                <ul>
+                    <li class="dropdown">
+                        <a>Fundos</a>
+                        <div class="dropdown-content">
+                            <a href="analisefundos.html">Fundos</a>
+                            <a href="....">....</a>
+                        </div>
+                    </li>
+
+                    <li class="dropdown">
+                        <a>Ações</a>
+                        <div class="dropdown-content">
+                            <a href="acoestec.html">Ações TEC</a>
+                            <a href="utilitystocks.html">Utility Stocks</a>
+                            <a href="valuestocks.html">Value Stocks</a>
+                        </div>
+                    </li>
+
+                    <li class="dropdown">
+                        <a>Imóveis</a>
+                        <div class="dropdown-content">
+                            <a href="analisefundos.html">Fundos</a>
+                            <a href="....">....</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="background-image"></div>
+    
+    <div class="waiting-room">
+        <h1>Bem-vindo</h1>
+    </div>
+
+    <script>
+        document.getElementById('navbar-toggle').addEventListener('click', function() {
+            var navbarLinks = document.getElementById('navbar-links');
+            navbarLinks.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

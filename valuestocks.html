@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Análise Quantitativa de Value Stocks</title>
+    <link rel="stylesheet" href="navbar.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+        form {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        fieldset {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+        legend {
+            font-weight: bold;
+            padding: 0 10px;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .submit-button {
+            text-align: center;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            max-width: 800px;
+            margin: auto;
+            background: #e7f3ff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a class="brand-title" href="direcionador.html">Meus Investimentos</a>
+            <button class="toggle-button" id="navbar-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <div class="navbar-links" id="navbar-links">
+                <ul>
+                    <li class="dropdown">
+                        <a>Fundos</a>
+                        <div class="dropdown-content">
+                            <a href="analisefundos.html">Fundos</a>
+                            <a href="....">....</a>
+                        </div>
+                    </li>
+
+                    <li class="dropdown">
+                        <a>Ações</a>
+                        <div class="dropdown-content">
+                            <a href="acoestec.html">Ações TEC</a>
+                            <a href="utilitystocks.html">Utility Stocks</a>
+                            <a href="valuestocks.html">Value Stocks</a>
+                        </div>
+                    </li>
+
+                    <li class="dropdown">
+                        <a>Imóveis</a>
+                        <div class="dropdown-content">
+                            <a href="analisefundos.html">Fundos</a>
+                            <a href="....">....</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <h1>Formulário de Análise Quantitativa de Value Stocks</h1>
+    <form id="analysis-form">
+        <!-- Finanças -->
+        <fieldset>
+            <legend>1. Finanças</legend>
+            <label for="balanco-patrimonial">Balanço Patrimonial:</label>
+            <input type="number" id="balanco-patrimonial" name="balanco-patrimonial" placeholder="Ex: 10000000" required>
+            
+            <label for="ativos-circulantes">Ativos Circulantes:</label>
+            <input type="number" id="ativos-circulantes" name="ativos-circulantes" placeholder="Ex: 5000000" required>
+            
+            <label for="passivos-circulantes">Passivos Circulantes:</label>
+            <input type="number" id="passivos-circulantes" name="passivos-circulantes" placeholder="Ex: 2000000" required>
+            
+            <label for="ativos-nao-circulantes">Ativos Não Circulantes:</label>
+            <input type="number" id="ativos-nao-circulantes" name="ativos-nao-circulantes" placeholder="Ex: 8000000" required>
+            
+            <label for="passivos-nao-circulantes">Passivos Não Circulantes:</label>
+            <input type="number" id="passivos-nao-circulantes" name="passivos-nao-circulantes" placeholder="Ex: 3000000" required>
+            
+            <label for="patrimonio-liquido">Patrimônio Líquido:</label>
+            <input type="number" id="patrimonio-liquido" name="patrimonio-liquido" placeholder="Ex: 8000000" required>
+        </fieldset>
+
+        <!-- Demonstrativo de Resultado -->
+        <fieldset>
+            <legend>2. Demonstrativo de Resultado</legend>
+            <label for="receita-liquida">Receita Líquida:</label>
+            <input type="number" id="receita-liquida" name="receita-liquida" placeholder="Ex: 15000000" required>
+            
+            <label for="ebit">EBIT:</label>
+            <input type="number" id="ebit" name="ebit" placeholder="Ex: 3000000" required>
+            
+            <label for="lucro-liquido">Lucro Líquido:</label>
+            <input type="number" id="lucro-liquido" name="lucro-liquido" placeholder="Ex: 2000000" required>
+        </fieldset>
+
+        <!-- Fluxo de Caixa -->
+        <fieldset>
+            <legend>3. Fluxo de Caixa</legend>
+            <label for="fluxo-operacional">Fluxo Operacional:</label>
+            <input type="number" id="fluxo-operacional" name="fluxo-operacional" placeholder="Ex: 2500000" required>
+            
+            <label for="fluxo-livre">Fluxo Livre:</label>
+            <input type="number" id="fluxo-livre" name="fluxo-livre" placeholder="Ex: 1500000" required>
+        </fieldset>
+
+        <!-- Indicadores de Rentabilidade -->
+        <fieldset>
+            <legend>4. Indicadores de Rentabilidade</legend>
+            <label for="roa">ROA (Retorno sobre Ativos):</label>
+            <input type="number" id="roa" name="roa" step="0.01" placeholder="Ex: 0.12" required>
+            
+            <label for="roe">ROE (Retorno sobre Patrimônio):</label>
+            <input type="number" id="roe" name="roe" step="0.01" placeholder="Ex: 0.15" required>
+            
+            <label for="roic">ROIC (Retorno sobre Capital Investido):</label>
+            <input type="number" id="roic" name="roic" step="0.01" placeholder="Ex: 0.10" required>
+        </fieldset>
+
+        <!-- Indicadores de Valuation -->
+        <fieldset>
+            <legend>5. Indicadores de Valuation</legend>
+            <label for="pl">P/L (Preço/Lucro):</label>
+            <input type="number" id="pl" name="pl" step="0.01" placeholder="Ex: 20.5" required>
+            
+            <label for="pvp">P/VP (Preço/Valor Patrimonial):</label>
+            <input type="number" id="pvp" name="pvp" step="0.01" placeholder="Ex: 1.8" required>
+            
+            <label for="ev-ebitda">EV/EBITDA:</label>
+            <input type="number" id="ev-ebitda" name="ev-ebitda" step="0.01" placeholder="Ex: 12.3" required>
+        </fieldset>
+
+        <!-- Outros Indicadores -->
+        <fieldset>
+            <legend>6. Outros Indicadores</legend>
+            <label for="dividend-yield">Dividend Yield (%):</label>
+            <input type="number" id="dividend-yield" name="dividend-yield" step="0.01" placeholder="Ex: 4.5" required>
+            
+            <label for="beta">Beta:</label>
+            <input type="number" id="beta" name="beta" step="0.01" placeholder="Ex: 1.2" required>
+            
+            <label for="payout-ratio">Payout Ratio (%):</label>
+            <input type="number" id="payout-ratio" name="payout-ratio" step="0.01" placeholder="Ex: 60.5" required>
+        </fieldset>
+
+        <!-- Risco/Volatilidade -->
+        <fieldset>
+            <legend>7. Risco e Volatilidade</legend>
+            <label for="desvio-padrao">Desvio Padrão:</label>
+            <input type="number" id="desvio-padrao" name="desvio-padrao" step="0.01" placeholder="Ex: 3.5" required>
+            
+            <label for="variancia">Variância:</label>
+            <input type="number" id="variancia" name="variancia" step="0.01" placeholder="Ex: 12.25" required>
+        </fieldset>
+
+        <div class="submit-button">
+            <button type="button" onclick="analyzeData()">Enviar</button>
+        </div>
+    </form>
+
+    <!-- Div para exibir os resultados da análise -->
+    <div id="result" class="result">
+        <h2>Resultado da Análise</h2>
+        <p id="analysis-result"></p>
+    </div>
+
+    <script>
+        function analyzeData() {
+            const form = document.getElementById('analysis-form');
+            const formData = new FormData(form);
+
+            // Obter os valores do formulário
+            const balancoPatrimonial = parseFloat(formData.get('balanco-patrimonial'));
+            const ativosCirculantes = parseFloat(formData.get('ativos-circulantes'));
+            const passivosCirculantes = parseFloat(formData.get('passivos-circulantes'));
+            const ativosNaoCirculantes = parseFloat(formData.get('ativos-nao-circulantes'));
+            const passivosNaoCirculantes = parseFloat(formData.get('passivos-nao-circulantes'));
+            const patrimonioLiquido = parseFloat(formData.get('patrimonio-liquido'));
+            const receitaLiquida = parseFloat(formData.get('receita-liquida'));
+            const ebit = parseFloat(formData.get('ebit'));
+            const lucroLiquido = parseFloat(formData.get('lucro-liquido'));
+            const fluxoOperacional = parseFloat(formData.get('fluxo-operacional'));
+            const fluxoLivre = parseFloat(formData.get('fluxo-livre'));
+            const roa = parseFloat(formData.get('roa'));
+            const roe = parseFloat(formData.get('roe'));
+            const roic = parseFloat(formData.get('roic'));
+            const pl = parseFloat(formData.get('pl'));
+            const pvp = parseFloat(formData.get('pvp'));
+            const evEbitda = parseFloat(formData.get('ev-ebitda'));
+            const dividendYield = parseFloat(formData.get('dividend-yield'));
+            const beta = parseFloat(formData.get('beta'));
+            const payoutRatio = parseFloat(formData.get('payout-ratio'));
+            const desvioPadrao = parseFloat(formData.get('desvio-padrao'));
+            const variancia = parseFloat(formData.get('variancia'));
+
+            // Lógica básica de análise (exemplo simples)
+            let resultText = "Análise dos dados inseridos:\n\n";
+
+            // Analisando a saúde financeira
+            const currentRatio = ativosCirculantes / passivosCirculantes;
+            const quickRatio = (ativosCirculantes - (receitaLiquida * 0.1)) / passivosCirculantes; // Considerando estoque como 10% da receita líquida
+
+            resultText += `Razão Corrente: ${currentRatio.toFixed(2)} (Ideal > 1.5)\n`;
+            resultText += `Razão Rápida: ${quickRatio.toFixed(2)} (Ideal > 1.0)\n`;
+
+            // Rentabilidade
+            resultText += `ROA: ${roa.toFixed(2)} (Ideal > 5%)\n`;
+            resultText += `ROE: ${roe.toFixed(2)} (Ideal > 10%)\n`;
+            resultText += `ROIC: ${roic.toFixed(2)} (Ideal > 10%)\n`;
+
+            // Valuation
+            resultText += `P/L: ${pl.toFixed(2)} (Dependendo do setor, idealmente entre 10 e 20)\n`;
+            resultText += `P/VP: ${pvp.toFixed(2)} (Ideal < 1.5 para ser subvalorizada)\n`;
+            resultText += `EV/EBITDA: ${evEbitda.toFixed(2)} (Ideal < 10)\n`;
+
+            // Indicadores de dividendos e risco
+            resultText += `Dividend Yield: ${dividendYield.toFixed(2)}% (Maior é melhor)\n`;
+            resultText += `Beta: ${beta.toFixed(2)} (Beta < 1 indica menor volatilidade que o mercado)\n`;
+            resultText += `Payout Ratio: ${payoutRatio.toFixed(2)}% (Idealmente entre 30% e 50%)\n`;
+            resultText += `Desvio Padrão: ${desvioPadrao.toFixed(2)} (Medida de volatilidade)\n`;
+            resultText += `Variância: ${variancia.toFixed(2)} (Medida de dispersão dos retornos)\n`;
+
+            // Conclusão baseada em critérios simples
+            let investmentConclusion = "\nConclusão:\n";
+            if (currentRatio > 1.5 && roe > 0.10 && pl < 20 && beta < 1) {
+                investmentConclusion += "Parece ser um bom momento para investir nesta ação Value Stock, com base nos dados fornecidos.\n";
+                investmentConclusion += "A empresa demonstra uma boa saúde financeira, rentabilidade e valuation atraente.";
+            } else {
+                investmentConclusion += "Pode não ser o momento ideal para investir nesta ação Value Stock, com base nos dados fornecidos.\n";
+                investmentConclusion += "Considere analisar mais profundamente os aspectos financeiros e de mercado.";
+            }
+
+            // Atualizar o texto da análise e exibir o resultado
+            const resultDiv = document.getElementById('result');
+            const analysisResult = document.getElementById('analysis-result');
+            analysisResult.textContent = resultText + investmentConclusion;
+            resultDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

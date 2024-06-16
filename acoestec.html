@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Análise Quantitativa de Ações de Tecnologia</title>
+    <link rel="stylesheet" href="navbar.css">
+
+<style>
+label, input { display: block; margin: 10px 0; }
+    .promissor { color: green; }
+    .nao-promissor { color: red; }
+    body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 20px;
+    background-color: #f5f5f5;
+    }
+    form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .form-group {
+    margin-bottom: 15px;
+    }
+    .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    }
+    .form-group input,
+    .form-group textarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    }
+    button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    }
+    .navbar-links a:hover {
+    background-color: #555;
+    border-radius: 5px;
+    }
+    
+    .toggle-button {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    }
+    
+    .toggle-button .bar {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 4px 0;
+    }
+    
+    @media (max-width: 768px) {
+    .toggle-button {
+    display: flex;
+    }
+    
+    .navbar-links {
+    display: none;
+    width: 100%;
+    }
+    
+    .navbar-links ul {
+    width: 100%;
+    flex-direction: column;
+    }
+    
+    .navbar-links li {
+    text-align: center;
+    margin: 10px 0;
+    }
+    
+    .navbar-links.active {
+    display: flex;
+    }
+    }
+    button:hover {
+    background-color: #0056b3;
+    }
+    .result {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #e9ecef;
+    border-radius: 8px;
+    }
+    .result p {
+    margin-bottom: 10px;
+    }
+    .promissor {
+    color: green;
+    }
+    .nao-promissor {
+    color: red;
+    }
+    .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    min-width: 150px;
+    }</style>
+  </head>
+  <body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a class="brand-title" href="direcionador.html">Meus Investimentos</a>
+            <button class="toggle-button" id="navbar-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <div class="navbar-links" id="navbar-links">
+                <ul>
+                    <li class="dropdown">
+                        <a>Fundos</a>
+                        <div class="dropdown-content">
+                            <a href="analisefundos.html">Fundos</a>
+                            <a href="....">....</a>
+                        </div>
+                    </li>
+
+                    <li class="dropdown">
+                        <a>Ações</a>
+                        <div class="dropdown-content">
+                            <a href="acoestec.html">Ações TEC</a>
+                            <a href="....">....</a>
+                        </div>
+                    </li>
+
+                    <li class="dropdown">
+                        <a>Imóveis</a>
+                        <div class="dropdown-content">
+                            <a href="analisefundos.html">Fundos</a>
+                            <a href="....">....</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <h1>Análise Quantitativa de Ações de Tecnologia</h1>
+    <form id="analise-form">
+        <label for="valorAtual">Valor Atual da Ação:</label>
+        <input type="number" id="valorAtual" name="valorAtual" step="0.01" required>
+        
+        <h2>Balanço Patrimonial</h2>
+        <label for="ativosCirculantes">Ativos Circulantes:</label>
+        <input type="number" id="ativosCirculantes" name="ativosCirculantes" step="0.01" required>
+        <label for="ativosNaoCirculantes">Ativos Não Circulantes:</label>
+        <input type="number" id="ativosNaoCirculantes" name="ativosNaoCirculantes" step="0.01" required>
+        <label for="passivosCirculantes">Passivos Circulantes:</label>
+        <input type="number" id="passivosCirculantes" name="passivosCirculantes" step="0.01" required>
+        <label for="passivosNaoCirculantes">Passivos Não Circulantes:</label>
+        <input type="number" id="passivosNaoCirculantes" name="passivosNaoCirculantes" step="0.01" required>
+        <label for="patrimonioLiquido">Patrimônio Líquido:</label>
+        <input type="number" id="patrimonioLiquido" name="patrimonioLiquido" step="0.01" required>
+        
+        <h2>Demonstração de Resultado</h2>
+        <label for="receitaLiquida">Receita Líquida:</label>
+        <input type="number" id="receitaLiquida" name="receitaLiquida" step="0.01" required>
+        <label for="ebit">EBIT:</label>
+        <input type="number" id="ebit" name="ebit" step="0.01" required>
+        <label for="lucroLiquido">Lucro Líquido:</label>
+        <input type="number" id="lucroLiquido" name="lucroLiquido" step="0.01" required>
+        
+        <h2>Fluxo de Caixa</h2>
+        <label for="fluxoCaixaOperacional">Fluxo de Caixa Operacional:</label>
+        <input type="number" id="fluxoCaixaOperacional" name="fluxoCaixaOperacional" step="0.01" required>
+        <label for="fluxoCaixaInvestimento">Fluxo de Caixa de Investimento:</label>
+        <input type="number" id="fluxoCaixaInvestimento" name="fluxoCaixaInvestimento" step="0.01" required>
+        <label for="fluxoCaixaFinanciamento">Fluxo de Caixa de Financiamento:</label>
+        <input type="number" id="fluxoCaixaFinanciamento" name="fluxoCaixaFinanciamento" step="0.01" required>
+        
+        <h2>Rentabilidade</h2>
+        <label for="roa">ROA (Return on Assets):</label>
+        <input type="number" id="roa" name="roa" step="0.01" required>
+        <label for="roe">ROE (Return on Equity):</label>
+        <input type="number" id="roe" name="roe" step="0.01" required>
+        <label for="roic">ROIC (Return on Invested Capital):</label>
+        <input type="number" id="roic" name="roic" step="0.01" required>
+        
+        <h2>Valuation</h2>
+        <label for="pl">P/L (Preço/Lucro):</label>
+        <input type="number" id="pl" name="pl" step="0.01" required>
+        <label for="pvp">P/VP (Preço/Valor Patrimonial):</label>
+        <input type="number" id="pvp" name="pvp" step="0.01" required>
+        <label for="evebitda">EV/EBITDA:</label>
+        <input type="number" id="evebitda" name="evebitda" step="0.01" required>
+        
+        <h2>Outras Métricas</h2>
+        <label for="dividendYield">Dividend Yield:</label>
+        <input type="number" id="dividendYield" name="dividendYield" step="0.01" required>
+        <label for="beta">Beta:</label>
+        <input type="number" id="beta" name="beta" step="0.01" required>
+        
+        <button type="submit">Analisar</button>
+    </form>
+
+    <div id="result" style="display:none;">
+        <h2>Resultado da Análise</h2>
+        <p id="analise"></p>
+    </div>
+
+    <script>
+        document.getElementById('analise-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Coletar os dados do formulário
+            const valorAtual = parseFloat(document.getElementById('valorAtual').value);
+            const ativosCirculantes = parseFloat(document.getElementById('ativosCirculantes').value);
+            const ativosNaoCirculantes = parseFloat(document.getElementById('ativosNaoCirculantes').value);
+            const passivosCirculantes = parseFloat(document.getElementById('passivosCirculantes').value);
+            const passivosNaoCirculantes = parseFloat(document.getElementById('passivosNaoCirculantes').value);
+            const patrimonioLiquido = parseFloat(document.getElementById('patrimonioLiquido').value);
+            const receitaLiquida = parseFloat(document.getElementById('receitaLiquida').value);
+            const ebit = parseFloat(document.getElementById('ebit').value);
+            const lucroLiquido = parseFloat(document.getElementById('lucroLiquido').value);
+            const fluxoCaixaOperacional = parseFloat(document.getElementById('fluxoCaixaOperacional').value);
+            const fluxoCaixaInvestimento = parseFloat(document.getElementById('fluxoCaixaInvestimento').value);
+            const fluxoCaixaFinanciamento = parseFloat(document.getElementById('fluxoCaixaFinanciamento').value);
+            const roa = parseFloat(document.getElementById('roa').value);
+            const roe = parseFloat(document.getElementById('roe').value);
+            const roic = parseFloat(document.getElementById('roic').value);
+            const pl = parseFloat(document.getElementById('pl').value);
+            const pvp = parseFloat(document.getElementById('pvp').value);
+            const evebitda = parseFloat(document.getElementById('evebitda').value);
+            const dividendYield = parseFloat(document.getElementById('dividendYield').value);
+            const beta = parseFloat(document.getElementById('beta').value);
+
+            // Calcular algumas métricas adicionais
+            const currentRatio = ativosCirculantes / passivosCirculantes;
+            const debtToEquityRatio = (passivosCirculantes + passivosNaoCirculantes) / patrimonioLiquido;
+            const netMargin = (lucroLiquido / receitaLiquida) * 100;
+            const ebitdaMargin = (ebit / receitaLiquida) * 100;
+
+            // Análise simplificada para determinar se o investimento é promissor ou não
+            let analiseTexto = '';
+            let promissor = true;
+
+            if (currentRatio < 1) {
+                analiseTexto += 'A empresa pode ter dificuldades para cobrir suas dívidas de curto prazo. Current Ratio está abaixo de 1. ';
+                promissor = false;
+            }
+
+            if (debtToEquityRatio > 1) {
+                analiseTexto += 'A empresa está altamente alavancada. Debt to Equity Ratio está acima de 1. ';
+                promissor = false;
+            }
+
+            if (roa < 5) {
+                analiseTexto += 'Baixa rentabilidade dos ativos. ROA está abaixo de 5%. ';
+                promissor = false;
+            }
+
+            if (roe < 10) {
+                analiseTexto += 'Baixa rentabilidade do patrimônio. ROE está abaixo de 10%. ';
+                promissor = false;
+            }
+
+            if (roic < 10) {
+                analiseTexto += 'Baixa rentabilidade sobre o capital investido. ROIC está abaixo de 10%. ';
+                promissor = false;
+            }
+
+            if (dividendYield < 2) {
+                analiseTexto += 'Baixo rendimento de dividendos. Dividend Yield está abaixo de 2%. ';
+            }
+
+            if (beta > 1.2) {
+                analiseTexto += 'A ação é mais volátil que o mercado. Beta está acima de 1.2. ';
+            }
+
+            if (promissor) {
+                analiseTexto = 'A ação parece ser promissora para investimento. ';
+                if (dividendYield >= 2) {
+                    analiseTexto += 'Oferece um bom rendimento de dividendos. ';
+                }
+                if (beta < 1) {
+                    analiseTexto += 'É menos volátil que o mercado. ';
+                }
+            } else {
+                analiseTexto += 'A ação não parece ser promissora para investimento atualmente. ';
+            }
+
+            analiseTexto += 'Por favor, verifique outros fatores e consulte um analista financeiro antes de tomar uma decisão final.';
+
+            document.getElementById('analise').textContent = analiseTexto;
+            document.getElementById('result').style.display = 'block';
+        });
+    </script>
+</body>
+</html>

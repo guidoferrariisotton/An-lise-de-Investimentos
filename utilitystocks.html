@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise Quantitativa - Utility Stocks</title>
+    <link rel="stylesheet" href="navbar.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        form {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #555;
+        }
+        input[type="text"], input[type="number"], select {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 5px 0 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #eef;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    }
+    .navbar-links a:hover {
+    background-color: #555;
+    border-radius: 5px;
+    }
+    
+    .toggle-button {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    }
+    
+    .toggle-button .bar {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 4px 0;
+    }
+    
+    @media (max-width: 768px) {
+    .toggle-button {
+    display: flex;
+    }
+    
+    .navbar-links {
+    display: none;
+    width: 100%;
+    }
+    
+    .navbar-links ul {
+    width: 100%;
+    flex-direction: column;
+    }
+    .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    min-width: 150px;
+    }
+    .navbar-links li {
+    text-align: center;
+    margin: 10px 0;
+    }
+    
+    .navbar-links.active {
+    display: flex;
+    }
+    }
+    button:hover {
+    background-color: #0056b3;
+    }
+    </style>
+
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a class="brand-title" href="direcionador.html">Meus Investimentos</a>
+            <button class="toggle-button" id="navbar-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <div class="navbar-links" id="navbar-links">
+                <ul>
+                    <li class="dropdown">
+                        <a>Fundos</a>
+                        <div class="dropdown-content">
+                            <a href="analisefundos.html">Fundos</a>
+                            <a href="....">....</a>
+                        </div>
+                    </li>
+
+                    <li class="dropdown">
+                        <a>Ações</a>
+                        <div class="dropdown-content">
+                            <a href="acoestec.html">Ações TEC</a>
+                            <a href="utilitystocks.html">Utility Stocks</a>
+                            <a href="valuestocks.html">Value Stocks</a>
+                        </div>
+                    </li>
+
+                    <li class="dropdown">
+                        <a>Imóveis</a>
+                        <div class="dropdown-content">
+                            <a href="analisefundos.html">Fundos</a>
+                            <a href="....">....</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <h1>Análise Quantitativa de Ações - Utility Stocks</h1>
+    <form id="analysisForm">
+        <h2>1. Finanças</h2>
+        <label for="ativosCirculantes">Ativos Circulantes (R$):</label>
+        <input type="number" id="ativosCirculantes" name="ativosCirculantes" step="0.01" required>
+        
+        <label for="passivosCirculantes">Passivos Circulantes (R$):</label>
+        <input type="number" id="passivosCirculantes" name="passivosCirculantes" step="0.01" required>
+        
+        <label for="ativosNaoCirculantes">Ativos Não Circulantes (R$):</label>
+        <input type="number" id="ativosNaoCirculantes" name="ativosNaoCirculantes" step="0.01" required>
+        
+        <label for="passivosNaoCirculantes">Passivos Não Circulantes (R$):</label>
+        <input type="number" id="passivosNaoCirculantes" name="passivosNaoCirculantes" step="0.01" required>
+        
+        <label for="patrimonioLiquido">Patrimônio Líquido (R$):</label>
+        <input type="number" id="patrimonioLiquido" name="patrimonioLiquido" step="0.01" required>
+        
+        <h2>2. Demonstrativo de Resultado</h2>
+        <label for="receitaLiquida">Receita Líquida (R$):</label>
+        <input type="number" id="receitaLiquida" name="receitaLiquida" step="0.01" required>
+        
+        <label for="ebit">EBIT (R$):</label>
+        <input type="number" id="ebit" name="ebit" step="0.01" required>
+        
+        <label for="lucroLiquido">Lucro Líquido (R$):</label>
+        <input type="number" id="lucroLiquido" name="lucroLiquido" step="0.01" required>
+        
+        <h2>3. Fluxo de Caixa</h2>
+        <label for="fluxoOperacional">Fluxo Operacional (R$):</label>
+        <input type="number" id="fluxoOperacional" name="fluxoOperacional" step="0.01" required>
+        
+        <label for="fluxoLivre">Fluxo Livre (R$):</label>
+        <input type="number" id="fluxoLivre" name="fluxoLivre" step="0.01" required>
+        
+        <h2>4. Indicadores de Rentabilidade</h2>
+        <label for="roa">ROA (%):</label>
+        <input type="number" id="roa" name="roa" step="0.01" required>
+        
+        <label for="roe">ROE (%):</label>
+        <input type="number" id="roe" name="roe" step="0.01" required>
+        
+        <label for="roic">ROIC (%):</label>
+        <input type="number" id="roic" name="roic" step="0.01" required>
+        
+        <h2>5. Indicadores de Valuation</h2>
+        <label for="pl">P/L:</label>
+        <input type="number" id="pl" name="pl" step="0.01" required>
+        
+        <label for="pvp">P/VP:</label>
+        <input type="number" id="pvp" name="pvp" step="0.01" required>
+        
+        <label for="evebitda">EV/EBITDA:</label>
+        <input type="number" id="evebitda" name="evebitda" step="0.01" required>
+        
+        <h2>6. Outros Indicadores</h2>
+        <label for="dividendYield">Dividend Yield (%):</label>
+        <input type="number" id="dividendYield" name="dividendYield" step="0.01" required>
+        
+        <label for="beta">Beta:</label>
+        <input type="number" id="beta" name="beta" step="0.01" required>
+        
+        <label for="payoutRatio">Payout Ratio (%):</label>
+        <input type="number" id="payoutRatio" name="payoutRatio" step="0.01" required>
+        
+        <input type="submit" value="Analisar">
+    </form>
+
+    <div class="result" id="result"></div>
+
+    <script>
+        document.getElementById('analysisForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Capturando os valores do formulário
+            const ativosCirculantes = parseFloat(document.getElementById('ativosCirculantes').value);
+            const passivosCirculantes = parseFloat(document.getElementById('passivosCirculantes').value);
+            const ativosNaoCirculantes = parseFloat(document.getElementById('ativosNaoCirculantes').value);
+            const passivosNaoCirculantes = parseFloat(document.getElementById('passivosNaoCirculantes').value);
+            const patrimonioLiquido = parseFloat(document.getElementById('patrimonioLiquido').value);
+
+            const receitaLiquida = parseFloat(document.getElementById('receitaLiquida').value);
+            const ebit = parseFloat(document.getElementById('ebit').value);
+            const lucroLiquido = parseFloat(document.getElementById('lucroLiquido').value);
+
+            const fluxoOperacional = parseFloat(document.getElementById('fluxoOperacional').value);
+            const fluxoLivre = parseFloat(document.getElementById('fluxoLivre').value);
+
+            const roa = parseFloat(document.getElementById('roa').value);
+            const roe = parseFloat(document.getElementById('roe').value);
+            const roic = parseFloat(document.getElementById('roic').value);
+
+            const pl = parseFloat(document.getElementById('pl').value);
+            const pvp = parseFloat(document.getElementById('pvp').value);
+            const evebitda = parseFloat(document.getElementById('evebitda').value);
+
+            const dividendYield = parseFloat(document.getElementById('dividendYield').value);
+            const beta = parseFloat(document.getElementById('beta').value);
+            const payoutRatio = parseFloat(document.getElementById('payoutRatio').value);
+
+            // Processamento e análise básica
+            let analysisResult = '';
+
+            // Analisando indicadores de valuation
+            if (pl < 15 && pvp < 1.5 && evebitda < 10) {
+                analysisResult += 'A ação parece subvalorizada em termos de P/L, P/VP e EV/EBITDA. ';
+            } else if (pl > 20 || pvp > 2 || evebitda > 12) {
+                analysisResult += 'A ação pode estar supervalorizada com base em P/L, P/VP ou EV/EBITDA. ';
+            } else {
+                analysisResult += 'Os indicadores de valuation estão em níveis aceitáveis. ';
+            }
+
+            // Analisando indicadores de rentabilidade
+            if (roa > 5 && roe > 10 && roic > 8) {
+                analysisResult += 'A empresa tem bons indicadores de rentabilidade (ROA, ROE, ROIC). ';
+            } else {
+                analysisResult += 'Os indicadores de rentabilidade (ROA, ROE, ROIC) estão abaixo das expectativas. ';
+            }
+
+            // Analisando dividend yield e payout ratio
+            if (dividendYield > 3 && payoutRatio < 70) {
+                analysisResult += 'A empresa tem um bom Dividend Yield e uma política de payout sustentável. ';
+            } else if (dividendYield < 2) {
+                analysisResult += 'O Dividend Yield está baixo. ';
+            } else if (payoutRatio > 70) {
+                analysisResult += 'O Payout Ratio é alto, o que pode limitar o crescimento futuro dos dividendos. ';
+            }
+
+            // Analisando volatilidade (Beta)
+            if (beta < 1) {
+                analysisResult += 'A ação tem baixa volatilidade em relação ao mercado. ';
+            } else if (beta > 1.5) {
+                analysisResult += 'A ação é altamente volátil em relação ao mercado. ';
+            } else {
+                analysisResult += 'A volatilidade da ação está dentro da média do mercado. ';
+            }
+
+            // Analisando o momento do mercado (alta ou baixa)
+            const totalPassivos = passivosCirculantes + passivosNaoCirculantes;
+            const totalAtivos = ativosCirculantes + ativosNaoCirculantes;
+            if (patrimonioLiquido > totalPassivos && receitaLiquida > 0 && lucroLiquido > 0) {
+                analysisResult += 'A empresa está em um momento de alta, com boa saúde financeira e lucro positivo. ';
+            } else {
+                analysisResult += 'A empresa pode estar enfrentando dificuldades financeiras. ';
+            }
+
+            // Conclusão sobre o investimento
+            if (pl < 15 && roa > 5 && dividendYield > 3) {
+                analysisResult += 'Vale a pena considerar o investimento, pois os indicadores são positivos. ';
+            } else {
+                analysisResult += 'Pode ser melhor analisar outras opções antes de investir, devido a alguns indicadores menos favoráveis. ';
+            }
+
+            document.getElementById('result').innerHTML = '<h3>Análise de Investimento</h3><p>' + analysisResult + '</p>';
+        });
+    </script>
+</body>
+</html>

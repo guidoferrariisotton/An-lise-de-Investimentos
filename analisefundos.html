@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise Quantitativa de Fundos de Investimento</title>
+    <link rel="stylesheet" href="styles.css" >
+    <style>
+    
+    label, input { display: block; margin: 10px 0; }
+    .promissor { color: green; }
+    .nao-promissor { color: red; }
+    body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 20px;
+    background-color: #f5f5f5;
+    }
+    form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .form-group {
+    margin-bottom: 15px;
+    }
+    .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    }
+    .form-group input,
+    .form-group textarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    }
+    button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    }
+    .navbar-links a:hover {
+    background-color: #555;
+    border-radius: 5px;
+    }
+    
+    .toggle-button {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    }
+    
+    .toggle-button .bar {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 4px 0;
+    }
+    
+    @media (max-width: 768px) {
+    .toggle-button {
+    display: flex;
+    }
+    
+    .navbar-links {
+    display: none;
+    width: 100%;
+    }
+    
+    .navbar-links ul {
+    width: 100%;
+    flex-direction: column;
+    }
+    
+    .navbar-links li {
+    text-align: center;
+    margin: 10px 0;
+    }
+    
+    .navbar-links.active {
+    display: flex;
+    }
+    }
+    button:hover {
+    background-color: #0056b3;
+    }
+    .result {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #e9ecef;
+    border-radius: 8px;
+    }
+    .result p {
+    margin-bottom: 10px;
+    }
+    .promissor {
+    color: green;
+    }
+    .nao-promissor {
+    color: red;
+    }
+    .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    min-width: 150px;
+    }
+    </style>
+    
+</head>
+<nav class="navbar">
+    <div class="navbar-container">
+        <a class="brand-title" href="direcionador.html">Meus Investimentos</a>
+        <button class="toggle-button" id="navbar-toggle">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <div class="navbar-links" id="navbar-links">
+            <ul>
+                <li class="dropdown">
+                    <a>Fundos</a>
+                    <div class="dropdown-content">
+                        <a href="analisefundos.html">Fundos</a>
+                        <a href="....">....</a>
+                    </div>
+                </li>
+
+                <li class="dropdown">
+                    <a>Ações</a>
+                    <div class="dropdown-content">
+                        <a href="acoestec.html">Ações TEC</a>
+                        <a href="....">....</a>
+                    </div>
+                </li>
+
+                <li class="dropdown">
+                    <a>Imóveis</a>
+                    <div class="dropdown-content">
+                        <a href="analisefundos.html">Fundos</a>
+                        <a href="....">....</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<body>
+    <h1>Análise Quantitativa de Fundo de Investimento</h1>
+    <form id="fund-form">
+        <div class="form-group">
+            <label for="rentabilidade">Rentabilidade Anual (%)</label>
+            <input type="number" id="rentabilidade" step="0.01" required>
+        </div>
+        <div class="form-group">
+            <label for="desempenho-historico">Desempenho Histórico (% ao ano)</label>
+            <input type="number" id="desempenho-historico" step="0.01" required>
+        </div>
+        <div class="form-group">
+            <label for="volatilidade">Volatilidade Anual (%)</label>
+            <input type="number" id="volatilidade" step="0.01" required>
+        </div>
+        <div class="form-group">
+            <label for="beta">Beta</label>
+            <input type="number" id="beta" step="0.01" required>
+        </div>
+        <div class="form-group">
+            <label for="drawdown-max">Drawdown Máximo (%)</label>
+            <input type="number" id="drawdown-max" step="0.01" required>
+        </div>
+        <div class="form-group">
+            <label for="custos">Custos (%)</label>
+            <input type="number" id="custos" step="0.01" required>
+        </div>
+        <div class="form-group">
+            <label for="desvio-padrao">Sharpe (%)</label>
+            <input type="number" id="desvio-padrao" step="0.01" required>
+        </div>
+        <div class="form-group">
+            <label for="patrimonio-liquido">Patrimônio Líquido (R$)</label>
+            <input type="number" id="patrimonio-liquido" step="0.01" required>
+        </div>
+        <button type="submit">Analisar</button>
+    </form>
+
+    <div id="result" class="result" style="display:none;">
+        <h2>Resultado da Análise</h2>
+        <p id="analise"></p>
+    </div>
+
+    <script>
+        document.getElementById('fund-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Pegar os valores dos inputs
+            const desvioPadrao = parseFloat(document.getElementById('desvio-padrao').value);
+            const rentabilidade = parseFloat(document.getElementById('rentabilidade').value);
+            const desempenhoHistorico = parseFloat(document.getElementById('desempenho-historico').value);
+            const volatilidade = parseFloat(document.getElementById('volatilidade').value);
+            const beta = parseFloat(document.getElementById('beta').value);
+            const drawdownMax = parseFloat(document.getElementById('drawdown-max').value);
+            const custos = parseFloat(document.getElementById('custos').value);
+            const patrimonioLiquido = parseFloat(document.getElementById('patrimonio-liquido').value);
+
+            // Realizar a análise
+            let analise = '';
+
+            if (desvioPadrao > 0 && rentabilidade > 0 && desempenhoHistorico > 0 && volatilidade > 0 && beta > 0 && drawdownMax > 0 && custos >= 0 && patrimonioLiquido > 0) {
+                // Critérios de análise (exemplo)
+                if (desvioPadrao < 10 && rentabilidade > 10 && desempenhoHistorico > 5 && volatilidade < 15 && beta < 1 && drawdownMax < 10 && custos < 2 && patrimonioLiquido > 1000000) {
+                    analise = 'Este fundo é promissor para investimento.';
+
+                    // Explicação da análise
+                    analise += ' Razões:';
+                    analise += ' - Desempenho histórico sólido;';
+                    analise += ' - Baixa volatilidade e drawdown máximo;';
+                    analise += ' - Beta inferior a 1 indica menor volatilidade em relação ao mercado;';
+                    analise += ' - Custos gerenciáveis;';
+                    analise += ' - Patrimônio líquido considerável, indicando estabilidade e confiança no fundo.';
+                    document.getElementById('analise').classList.add('promissor');
+                } else {
+                    analise = 'Este fundo não parece ser promissor para investimento.';
+                    // Explicação da análise
+                    analise += ' Razões:';
+                    if (desempenhoHistorico <= 5) {
+                        analise += ' - Desempenho histórico abaixo do esperado;';
+                    }
+                    if (volatilidade >= 15) {
+                        analise += ' - Alta volatilidade;';
+                    }
+                    if (beta >= 1) {
+                        analise += ' - Beta igual ou superior a 1 indica volatilidade maior em relação ao mercado;';
+                    }
+                    if (drawdownMax >= 10) {
+                        analise += ' - Drawdown máximo elevado, indicando alto risco de perdas;';
+                    }
+                    if (custos >= 2) {
+                        analise += ' - Custos elevados podem reduzir o retorno do investimento;';
+                    }
+                    if (patrimonioLiquido <= 1000000) {
+                        analise += ' - Patrimônio líquido abaixo do desejável, indicando possível instabilidade.';
+                    }
+                    document.getElementById('analise').classList.add('nao-promissor');
+                }
+            } else {
+                analise = 'Por favor, preencha todos os campos com valores válidos.';
+            }
+
+            // Exibir o resultado
+            document.getElementById('analise').textContent = analise;
+            document.getElementById('result').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
+
